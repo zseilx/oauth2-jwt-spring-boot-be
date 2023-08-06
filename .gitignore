@@ -61,3 +61,6 @@ out/
 hs_err_pid*
 replay_pid*
 /.metadata/
+
+#hide actual application.yml for hiding oauth2 client id and secret
+application.yml
