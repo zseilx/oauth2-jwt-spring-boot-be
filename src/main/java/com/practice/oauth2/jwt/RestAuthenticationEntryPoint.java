@@ -1,4 +1,4 @@
-package com.practice.oauth2.auth;
+package com.practice.oauth2.jwt;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;

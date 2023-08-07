@@ -1,6 +1,7 @@
 package com.practice.oauth2.auth;
 
-import lombok.RequiredArgsConstructor;
+import java.time.LocalDateTime;
+
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -14,7 +15,7 @@ import com.practice.oauth2.jwt.UserEntity;
 import com.practice.oauth2.jwt.UserPrincipal;
 import com.practice.oauth2.jwt.UserRepository;
 
-import java.time.LocalDateTime;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +41,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         ProviderType providerType = ProviderType.valueOf(userRequest.getClientRegistration().getRegistrationId().toUpperCase());
 
         OAuth2UserInfo userInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(providerType, user.getAttributes());
-        UserEntity savedUser = userRepository.findByUserId(userInfo.getId()).orElse(createUser(userInfo, providerType));
+
+        UserEntity savedUser = userRepository.findByUserId(userInfo.getId())
+        		.orElseGet(() -> createUser(userInfo, providerType));
 
         if (savedUser != null) {
             if (providerType != savedUser.getProviderType()) {

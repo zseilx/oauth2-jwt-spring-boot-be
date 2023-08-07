@@ -1,5 +1,7 @@
 package com.practice.oauth2.config;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;
@@ -21,16 +23,14 @@ import com.practice.oauth2.auth.CustomOAuth2UserService;
 import com.practice.oauth2.auth.OAuth2AuthenticationFailureHandler;
 import com.practice.oauth2.auth.OAuth2AuthenticationSuccessHandler;
 import com.practice.oauth2.auth.OAuth2AuthorizationRequestBasedOnCookieRepository;
-import com.practice.oauth2.auth.RestAuthenticationEntryPoint;
 import com.practice.oauth2.jwt.AuthTokenProvider;
+import com.practice.oauth2.jwt.RestAuthenticationEntryPoint;
 import com.practice.oauth2.jwt.RoleType;
 import com.practice.oauth2.jwt.TokenAccessDeniedHandler;
 import com.practice.oauth2.jwt.TokenAuthenticationFilter;
 import com.practice.oauth2.jwt.UserRefreshTokenRepository;
 
 import lombok.RequiredArgsConstructor;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @RequiredArgsConstructor
@@ -58,7 +58,6 @@ public class SecurityConfig {
         http
             .cors(withDefaults())
             .csrf(csrf -> csrf.disable())
-            .headers(h -> h.frameOptions().disable()) // h2-console connection 이후 화면을 사용하기 위함
             .formLogin(fm -> fm.disable())
             .httpBasic(hb -> hb.disable())
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -67,7 +66,6 @@ public class SecurityConfig {
                 eh.accessDeniedHandler(tokenAccessDeniedHandler);
             })
             .authorizeHttpRequests(ohr -> {
-            	ohr.antMatchers("/h2-console/**").permitAll();
                 ohr.requestMatchers(CorsUtils::isPreFlightRequest).permitAll();
                 ohr.antMatchers("/api/**").hasAnyAuthority(RoleType.USER.getCode());
                 ohr.antMatchers("/api/**/admin/**").hasAnyAuthority(RoleType.ADMIN.getCode());
@@ -90,7 +88,7 @@ public class SecurityConfig {
 	/*
 	 * auth 매니저 설정
 	 */
-	@Bean // (BeanIds.AUTHENTICATION_MANAGER)
+	@Bean
 	protected AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 		return authConfig.getAuthenticationManager();
 	}

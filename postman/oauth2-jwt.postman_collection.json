@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "ab33bec4-0ff8-46a4-a455-e456df5f9e18",
+		"name": "oauth2-jwt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23055946"
+	},
+	"item": [
+		{
+			"name": "Google Oauth2 Authorization",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "Google Auth Token",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8080/login/oauth2/code/google",
+							"type": "string"
+						},
+						{
+							"key": "refreshTokenUrl",
+							"value": "http://localhost:3000/oauth/redirect",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://www.googleapis.com/oauth2/v4/token",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "{{google secret}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{google id}}",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8080/oauth2/authorization/google",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth2/authorization/google",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth2",
+						"authorization",
+						"google"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Naver Oauth2 Authorization",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "Naver Auth Token",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "{{naver secret}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{naver id}}",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://nid.naver.com/oauth2.0/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8080/oauth2/authorization/naver",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8080/login/oauth2/code/naver",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth2/authorization/naver",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth2",
+						"authorization",
+						"naver"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Kakao Oauth2 Authorization",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "Kakao Auth Token",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "{{kakao secret}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{kakao id}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://kauth.kakao.com/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "refreshTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8080/oauth2/authorization/kakao",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8080/login/oauth2/code/kakao",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth2/authorization/kakao",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth2",
+						"authorization",
+						"kakao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JWT Refresh Test",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMDQ3NDcyODAxNjkzMzk2MzQ4MTAiLCJyb2xlIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjkxNDA1MTA3fQ.aM2PYLpRpZKgAf-AIFsRJXVAvqRLuao87HatvJifKhE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
